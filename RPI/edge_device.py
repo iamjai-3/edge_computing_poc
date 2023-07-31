@@ -2,6 +2,7 @@ import threading
 import uuid
 
 import paho.mqtt.client as mqtt
+from azure.iot.device import IoTHubDeviceClient
 
 # MQTT Broker (Broker address and port)
 MQTT_BROKER = ""
@@ -12,6 +13,10 @@ MQTT_PASSWORD = ""
 # MQTT Topics to subscribe to (you can add more topics as needed)
 TOPICS = ["edge/temp"]
 
+
+# Azure IoT Hub connection string
+IOTHUB_CONNECTION_STRING = "HostName=EdgeComputing.azure-devices.net;DeviceId=rpi-edge;SharedAccessKey=fKwRhSi4fIonj61wsSzV55GmiS3j4WxzKf+wSsvIcqo="
+client = IoTHubDeviceClient.create_from_connection_string(IOTHUB_CONNECTION_STRING)
 
 # Callback when the client connects to the broker
 def on_connect(client, userData, flags, rc):
@@ -36,6 +41,16 @@ def on_message(client, userData, msg):
     acknowledgment_payload = "Received"
     client.publish(acknowledgment_topic, acknowledgment_payload)
 
+    # Send data to Azure IoT Hub
+    send_to_azure(payload)
+    
+def send_to_azure(data):
+    try:
+        # Send the data to Azure IoT Hub
+        client.send_message(data)
+        print("Message sent to Azure IoT Hub")
+    except Exception as e:
+        print(f"Error sending data to Azure IoT Hub: {e}")
 
 def mqtt_thread():
     client_id = f"mqtt-client-{uuid.uuid4()}"  # Generate a unique client ID
