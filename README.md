@@ -300,6 +300,28 @@ Once the setup is complete, you can test the architecture by following these ste
 3.  The ESP8266 should start publishing data to the MQTT broker.
 4.  You can view the data in the Azure IoT Hub.
 
+Now we have to run the Python program on our Raspberry Pi. For that, we have to run python3 <File Name> on the terminal of Raspberry Pi. Since I have written my code on a file named edge_device.py I use the following command to run the program.
+
+```bash
+python3 edge_device.py
+```
+
+After completing the previous steps, you can open the CLI and execute the following command to install the necessary Azure add-ons.
+
+```bash
+az extension add --name azure-iot
+```
+
+Now go to your Microsoft Azure portal and navigate to the CLI Terminal to view the data in Azure IoT Hub. Then, execute the following command in the terminal while substituting your own credentials.
+
+```bash
+az iot hub monitor-events --hub-name xxx --device-id xxx
+```
+
+In the above command replace first xxx with your Azure IoT hub name and second xxx with the device ID.
+
+Then you can see the real-time temperature and humidity sensor data coming from the DHT11 sensor on the Azure CLI.
+
 ## Azure IoT Hub: Unleashing the Power of Cloud Computing
 
 ![Alt text](image.png)
