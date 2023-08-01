@@ -324,7 +324,7 @@ Then you can see the real-time temperature and humidity sensor data coming from 
 
 ## Azure IoT Hub: Unleashing the Power of Cloud Computing
 
-![Alt text](image.png)
+![Alt text](AzureIot.png)
 
 After collecting data at the edge, the Raspberry Pi becomes the data consumer and efficiently streams the acquired data to the Azure IoT Hub. Azure IoT Hub, a cloud-based service by Microsoft, offers extensive capabilities for data storage, processing, and advanced analytics.
 
