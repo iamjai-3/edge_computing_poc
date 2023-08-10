@@ -15,7 +15,7 @@ TOPICS = ["edge/temp"]
 
 
 # Azure IoT Hub connection string
-IOTHUB_CONNECTION_STRING = "HostName=EdgeComputing.azure-devices.net;DeviceId=rpi-edge;SharedAccessKey=fKwRhSi4fIonj61wsSzV55GmiS3j4WxzKf+wSsvIcqo="
+IOTHUB_CONNECTION_STRING = "iot_hub_connection_string"
 client = IoTHubDeviceClient.create_from_connection_string(IOTHUB_CONNECTION_STRING)
 
 # Callback when the client connects to the broker
